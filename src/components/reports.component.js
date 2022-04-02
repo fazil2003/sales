@@ -1,0 +1,11 @@
+import React, {Component} from 'react';
+
+export default class Reports extends Component{
+    render(){
+        return (
+            <div>
+                <p>This is Reports Component.</p>
+            </div>
+        )
+    }
+}
