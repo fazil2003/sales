@@ -1,42 +1,313 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
 :root{
-  --color-primary: #00DBDE;
-  --color-secondary: #FC00FF; 
-  --color-hover: #1E90FF;
-  --font-family: Quicksand, sans-serif;
-  --font-size: 18px;
+	--color-primary: #00DBDE;
+	--color-secondary: #FC00FF; 
+	--color-hover: #1E90FF;
+	--font-family: Quicksand, sans-serif;
+	--font-family-two: 'Montserrat', sans-serif;
+	--font-size: 18px;
 }
 
 html{
-  background-color: var(--color-primary);
-  background-image: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary)  100%);
-  font-family: var(--font-family);
-  font-size: calc(var(--font-size) + 0px);
+	background-color: var(--color-primary);
+	/* background-image: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary)  100%); */
+	background-image: linear-gradient(180deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+	animation-name: background-animation;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+	height: 100%;
 
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
+	font-family: var(--font-family);
+	font-size: calc(var(--font-size) + 0px);
+
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
 }
 
 html, textarea, button, input, select{
-  font-family: var(--font-family);
-  font-size: calc(var(--font-size) + 0px);
+	font-family: var(--font-family);
+	font-size: calc(var(--font-size) + 0px);
 }
 
 button, input, select, textarea{
-  outline: none;
-  border: none;
+	outline: none;
+	border: none;
 }
 
 button:active{
-  transform: scale(0.95);
+  	transform: scale(0.95);
 }
 
 a{
-  text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
+	text-decoration: none;
+	-webkit-tap-highlight-color: transparent;
+}
+
+#root{
+  	margin: 30px;
+}
+
+.heading-div{
+	margin-top: 120px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.heading-div .heading{
+	margin-top: 0px;
+	background: linear-gradient(to right, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
+	border-radius: 50px 0 0 50px;
+	padding: 8px 0 8px 30px;
+	flex: 0.4;
+	font-family: var(--font-family-two);
+	font-size: calc(var(--font-size) + 10px);
+	font-weight: bold;
+}
+
+.heading-div .search-bar{
+	margin: 15px;
+	margin-top: 0px;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.8);
+	border: 2px solid rgba(255, 255, 255, 0.8);
+	/* FOR BORDER OPACITY */
+	-webkit-background-clip: padding-box; /* for Safari */
+	background-clip: padding-box; /* for IE9+, Firefox 4+, Opera, Chrome */
+	border-radius: 10px;
+	color: black;
+	font-weight: bold;
+	padding: 12px;
+	flex: 0.35;
+	transition: 0.3s ease all;
+
+	/* background-image: url(https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSbUF8ijoIW-ZFNk-M-KT-J3uUAfl6bNrkTWPcr3tw1HMjqVoFAFcoKRTk); */
+    background-image: url(../public/images/icon-search.png);
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: 95% 45%;
+    vertical-align: middle;
+}
+
+.heading-div .search-bar:focus{
+	border-color: black;
+	flex: 0.5;
+	transition: 0.3s ease all;
+}
+
+.heading-div .options{
+	margin-top: 0px;
+	height: 50px;
+	flex: 1;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.options button{
+	color: black;
+	background: rgba(255, 255, 255, 0.8);
+	border-radius: 50px;
+	padding: 0px 30px 0px 30px;
+	margin: 0px 10px 0px 10px;
+	font-size: calc(var(--font-size) - 2px);
+	font-weight: bold;
+}
+
+.options button:hover{
+	background: rgba(255, 255, 255, 1);
+	box-shadow: 2px 2px 5px rgb(235, 235, 235, 0.8);
+}
+
+.options button .icon{
+	color: var(--color-hover);
+}
+
+.title-div{
+	margin-top: 0px;
+	margin-bottom: -15px;
+	color: black;
+	font-weight: bold;
+	padding: 0 20px 0 20px;
+	display: flex;
+}
+
+.title-div .flex-one{
+  	flex: 1;
+}
+
+.title-div .flex-three{
+  	flex: 3;
+}
+
+/* The animation code */
+@keyframes background-animation {
+  	0%   {
+		background:linear-gradient(180deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	2.5%  {
+		background:linear-gradient(189deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	5%  {
+		background:linear-gradient(198deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	7.5%  {
+		background:linear-gradient(207deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	10%  {
+		background:linear-gradient(216deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	12.5%  {
+		background:linear-gradient(225deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	15%  {
+		background:linear-gradient(234deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	17.5%  {
+		background:linear-gradient(243deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	20%  {
+		background:linear-gradient(252deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	22.5%  {
+		background:linear-gradient(261deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+  	25%  {
+		background:linear-gradient(270deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	27.5%  {
+		background:linear-gradient(279deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	30%  {
+		background:linear-gradient(288deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	32.5%  {
+		background:linear-gradient(297deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	35%  {
+		background:linear-gradient(306deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	37.5%  {
+		background:linear-gradient(315deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	40%  {
+		background:linear-gradient(324deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	42.5%  {
+		background:linear-gradient(333deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	45%  {
+		background:linear-gradient(342deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	47.5%  {
+		background:linear-gradient(351deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+ 	50%  {
+		background:linear-gradient(360deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	52.5%  {
+		background:linear-gradient(9deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	55%  {
+		background:linear-gradient(18deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	57.5%  {
+		background:linear-gradient(27deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	60%  {
+		background:linear-gradient(36deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	62.5%  {
+		background:linear-gradient(45deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	65%  {
+		background:linear-gradient(54deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	67.5%  {
+		background:linear-gradient(63deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	70%  {
+		background:linear-gradient(72deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	72.5%  {
+		background:linear-gradient(81deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	75%  {
+		background:linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	77.5%  {
+		background:linear-gradient(99deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	80%  {
+		background:linear-gradient(108deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	82.5%  {
+		background:linear-gradient(117deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	85%  {
+		background:linear-gradient(126deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	87.5%  {
+		background:linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	90%  {
+		background:linear-gradient(144deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	92.5%  {
+		background:linear-gradient(153deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	95%  {
+		background:linear-gradient(162deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+	97.5%  {
+		background:linear-gradient(171deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
+
+  	100% {
+		background:linear-gradient(180deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  	}
 }

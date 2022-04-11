@@ -17,7 +17,7 @@ function Header() {
             <div className="navbar">
 
                 {/* PRODUCTS */}
-                {finalAddress == "" ? (
+                {finalAddress === "" ? (
                     <a href="/">
                         <button title="Add/Manage your products" className="items selected-option"><FontAwesomeIcon icon={faBox} className="icon" />&nbsp;&nbsp;Products</button>
                     </a>
@@ -28,7 +28,7 @@ function Header() {
                 )}
 
                 {/* SALES */}
-                {finalAddress == "sales" ? (
+                {finalAddress === "sales" ? (
                     <a href="/sales">
                         <button title="Add/Manage your product sales" className="items selected-option"><FontAwesomeIcon icon={faCircleCheck} className="icon" />&nbsp;&nbsp;Sales</button>
                     </a>
@@ -39,7 +39,7 @@ function Header() {
                 )}
 
                 {/* CUSTOMERS */}
-                {finalAddress == "customers" ? (
+                {finalAddress === "customers" ? (
                     <a href="/customers">
                         <button title="Add/Manage your customers" className="items selected-option"><FontAwesomeIcon icon={faPeopleArrows} className="icon" />&nbsp;&nbsp;Customers</button>
                     </a>
@@ -50,7 +50,7 @@ function Header() {
                 )}
 
                 {/* REPORTS */}
-                {finalAddress == "reports" ? (
+                {finalAddress === "reports" ? (
                     <a href="/reports">
                         <button title="Generate the sales reports" className="items selected-option"><FontAwesomeIcon icon={faFileCode} className="icon" />&nbsp;&nbsp;Reports</button>
                     </a>
@@ -61,7 +61,7 @@ function Header() {
                 )}
 
                 {/* SETTINGS */}
-                {finalAddress == "settings" ? (
+                {finalAddress === "settings" ? (
                     <a href="/settings">
                         <button title="Add/Manage your settings" className="items selected-option"><FontAwesomeIcon icon={faGear} className="icon" />&nbsp;&nbsp;Settings</button>
                     </a>
