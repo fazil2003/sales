@@ -128,6 +128,10 @@ a{
 	color: var(--color-hover);
 }
 
+.total-records{
+	margin-left: 30px;
+}
+
 .title-div{
 	margin-top: 0px;
 	margin-bottom: -15px;
@@ -143,6 +147,10 @@ a{
 
 .title-div .flex-three{
   	flex: 3;
+}
+
+.title-div .flex-icon{
+	flex: 0.35;
 }
 
 /* The animation code */

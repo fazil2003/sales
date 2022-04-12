@@ -32,3 +32,21 @@
 .content-div .price::before{
     content: "$ ";
 }
+
+.content-div .icon{
+    flex: 0.35;
+    margin-top: 15px;
+    font-size: 25px;
+}
+
+.content-div .icon:active{
+    transform: scale(0.9);
+}
+
+.content-div .red{
+    color: tomato;
+}
+
+.content-div .blue{
+    color: dodgerblue;
+}

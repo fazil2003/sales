@@ -40,11 +40,18 @@ router.route('/insert').get((req, res) => {
 
 // Select
 router.route('/get').get((req, res) => {
-    let sql = 'SELECT * FROM products ORDER BY name';
+
+    let q = "";
+    if(req.query.q){
+        q = req.query.q;
+    }
+
+    let sql = `SELECT * FROM products WHERE name LIKE '%${q}%' OR description LIKE '%${q}%' ORDER BY name`;
     let query = db.query(sql, (err, result) => {
         if(err) throw err;
         res.send(result);
     });
+
 });
 
 module.exports = router;
