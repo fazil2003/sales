@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-export default class Settings extends Component{
-    render(){
-        return (
-            <div>
-                <p>This is Settings Component.</p>
-            </div>
-        )
-    }
+const Settings = () => {
+    return(
+        <div>
+            <p>This is Settings Component.</p>
+        </div>
+    );
 }
+
+export default Settings;

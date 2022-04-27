@@ -46,7 +46,9 @@ router.route('/get').get((req, res) => {
         q = req.query.q;
     }
 
-    let sql = `SELECT * FROM products WHERE name LIKE '%${q}%' OR description LIKE '%${q}%' ORDER BY name`;
+    let col = 'name';
+    let order = 'desc'
+    let sql = `SELECT * FROM products WHERE name LIKE '%${q}%' OR description LIKE '%${q}%' ORDER BY ${col} ${order}`;
     let query = db.query(sql, (err, result) => {
         if(err) throw err;
         res.send(result);
