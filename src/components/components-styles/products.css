@@ -12,21 +12,17 @@
     box-shadow: 2px 2px 5px rgb(235, 235, 235, 0.8);
 }
 
-.content-div .name, .description{
-    flex: 3;
-}
-
-.content-div .price, .stocks{
-    flex: 1;
-}
-
 .content-div .name{
     font-weight: bold;
 }
 
-.content-div .price{
+.content-div .price, .content-div .phone{
     font-weight: bold;
     color: var(--color-hover);
+}
+
+.content-div .phone::before{
+    content: "+91 ";
 }
 
 .content-div .price::before{

@@ -8,10 +8,10 @@ import { faBox, faAdd, faFileCode, faGear, faEdit, faDeleteLeft } from '@fortawe
 
 const Product = props => (
     <div class="content-div" title={props.product.name}>
-        <p class="name">{props.product.name}</p>
-        <p class="description">{props.product.description}</p>
-        <p class="price">{props.product.price}</p>
-        <p class="stocks">{props.product.stocks}</p>
+        <p class="name flex-three">{props.product.name}</p>
+        <p class="description flex-three">{props.product.description}</p>
+        <p class="price flex-one">{props.product.price}</p>
+        <p class="stocks flex-one">{props.product.stocks}</p>
         <FontAwesomeIcon icon={faEdit} className="icon blue" />
         <FontAwesomeIcon icon={faDeleteLeft} className="icon red" />
     </div>

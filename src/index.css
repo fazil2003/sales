@@ -141,15 +141,19 @@ a{
 	display: flex;
 }
 
-.title-div .flex-one{
+.flex-one{
   	flex: 1;
 }
 
-.title-div .flex-three{
+.flex-two{
+	flex: 2;
+}
+
+.flex-three{
   	flex: 3;
 }
 
-.title-div .flex-icon{
+.flex-icon{
 	flex: 0.35;
 }
 

@@ -1,16 +1,6 @@
 const db = require('./connect-db');
 const router = require('express').Router();
 
-// Create DB
-router.route('/createdb').get((req, res)=>{
-    let sql = 'CREATE DATABASE nodemysql';
-    db.query(sql, (err, result)=>{
-        if(err) throw err;
-        console.log(result);
-        res.send('Database created...');
-    });
-});
-
 // Insert
 router.route('/insert').get((req, res) => {
     let post = {name: "Fazil", age: 15, date: new Date()};
@@ -32,7 +22,7 @@ router.route('/get').get((req, res) => {
 
     let col = 'name';
     let order = 'desc'
-    let sql = `SELECT * FROM products WHERE name LIKE '%${q}%' OR description LIKE '%${q}%' ORDER BY ${col} ${order}`;
+    let sql = `SELECT * FROM customers WHERE name LIKE '%${q}%' OR occupation LIKE '%${q}%' OR address LIKE '%${q}%' OR phone LIKE '%${q}%' OR email LIKE '%${q}%' ORDER BY ${col} ${order}`;
     let query = db.query(sql, (err, result) => {
         if(err) throw err;
         res.send(result);
