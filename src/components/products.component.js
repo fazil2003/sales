@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 // import Popup from 'reactjs-popup';
@@ -14,9 +14,27 @@ const Product = props => (
         <p class="price flex-one">{props.product.price}</p>
         <p class="stocks flex-one">{props.product.stocks}</p>
         <FontAwesomeIcon icon={faEdit} className="icon blue" />
-        <FontAwesomeIcon icon={faDeleteLeft} className="icon red" />
+        <FontAwesomeIcon icon={faDeleteLeft} className="icon red" onClick={ (event) => deleteProduct(event, props.product.id) } />
     </div>
 )
+
+// DELETE PRODUCT
+// Delete Product should be outside the functional component, So that it can be accessed easily.
+const deleteProduct = (event, productID) => {
+    event.preventDefault();
+
+    const deleteData = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(
+            {
+                id: productID
+            }
+        )
+    };
+    fetch('http://localhost:5000/products/delete', deleteData)
+        .then(response => alert("Deleted Successfully!!!"));
+}
 
 const Products = () =>{
 
@@ -73,6 +91,35 @@ const Products = () =>{
         
     }
 
+    // ADD NEW PRODUCT
+    const addNewProduct = (event) => {
+        event.preventDefault(); 
+
+        // console.log(event.target[0].value)
+        // console.log(event.target[1].value)   
+        // console.log(event.target[2].value)
+        // console.log(event.target[3].value)  
+        
+        // POST request using fetch inside useEffect React hook
+        const insertData = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(
+                {
+                    name: event.target[0].value,
+                    description: event.target[1].value,
+                    price: event.target[2].value,
+                    stocks: event.target[3].value
+                }
+            )
+        };
+        fetch('http://localhost:5000/products/insert', insertData)
+            .then(response => alert("Added Successfully!!!"))
+            .then(setButtonPopup(false));
+        
+    }
+
+    
     return (
         <div class="products-container">
 
@@ -89,13 +136,33 @@ const Products = () =>{
                         Hello
                     </Popup> */}
 
-                    <button onClick={() => setButtonPopup(true)}><FontAwesomeIcon icon={faAdd} className="icon" />&nbsp;&nbsp;Add New Record</button>
-                    <button><FontAwesomeIcon icon={faFileCode} className="icon" />&nbsp;&nbsp;Generate Report</button>
-                    <button><FontAwesomeIcon icon={faGear} className="icon" />&nbsp;&nbsp;Others</button>
+                    <button className='button-menu' onClick={() => setButtonPopup(true)}><FontAwesomeIcon icon={faAdd} className="icon" />&nbsp;&nbsp;Add New Record</button>
+                    <button className='button-menu'><FontAwesomeIcon icon={faFileCode} className="icon" />&nbsp;&nbsp;Generate Report</button>
+                    <button className='button-menu'><FontAwesomeIcon icon={faGear} className="icon" />&nbsp;&nbsp;Others</button>
 
                     <Popup trigger={buttonPopup} setTrigger={setButtonPopup} >
-                        <h3>Add Products</h3>
-                        <p>This is my button triggered popup.</p>
+                        <center>
+                            <p className='heading'><FontAwesomeIcon icon={faAdd} className="icon" />&nbsp;&nbsp;Add Product</p>
+                            
+                            <form onSubmit={addNewProduct}>
+
+                                <p className='label'>Product Name:</p>
+                                <input className='text-field' type='text' placeholder='Product Name' required />
+
+                                <p className='label'>Product Description:</p>
+                                <input className='text-field' type='text' placeholder='Product Description' required />
+
+                                <p className='label'>Product Price:</p>
+                                <input className='text-field' type='number' placeholder='Product Price' required />
+
+                                <p className='label'>Product Stocks:</p>
+                                <input className='text-field' type='number' placeholder='Product Stocks' required />
+
+                                <button className='button'><FontAwesomeIcon icon={faAdd} className="icon" />&nbsp;&nbsp;Add</button>
+
+                            </form>
+
+                        </center>
                     </Popup>
 
                 </div>

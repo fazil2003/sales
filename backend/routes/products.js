@@ -12,13 +12,35 @@ router.route('/createdb').get((req, res)=>{
 });
 
 // Insert
-router.route('/insert').get((req, res) => {
-    let post = {name: "Fazil", age: 15, date: new Date()};
-    let sql = 'INSERT INTO users SET ?';
-    let query = db.query(sql, post, (err, result) => {
+// router.route('/insert').get((req, res) => {
+//     let post = {name: "Fazil", age: 15, date: new Date()};
+//     let sql = 'INSERT INTO users SET ?';
+//     let query = db.query(sql, post, (err, result) => {
+//         if(err) throw err;
+//         console.log(result);
+//         res.send("Added Successfully...");
+//     });
+// });
+
+// Insert
+router.route('/insert').post((req, res) => {
+    let productName = "";
+    let productDescription = "";
+    let productPrice = "";
+    let productStocks = "";
+
+    productName = req.body.name;
+    productDescription = req.body.description;
+    productPrice = req.body.price;
+    productStocks = req.body.stocks;
+
+    let insertData = {name: productName, description: productDescription, price: productPrice, stocks: productStocks};
+
+    let sql = 'INSERT INTO products SET ?';
+    let query = db.query(sql, insertData, (err, result) => {
         if(err) throw err;
         console.log(result);
-        res.send("Added Successfully...");
+        res.send(JSON.stringify({"status": 200, "error": null, "response": "Added Successfully!!!"}));
     });
 });
 

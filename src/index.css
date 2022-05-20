@@ -109,7 +109,7 @@ a{
 	flex-wrap: wrap;
 }
 
-.options button{
+.options .button-menu{
 	color: black;
 	background: rgba(255, 255, 255, 0.8);
 	border-radius: 50px;
@@ -119,12 +119,12 @@ a{
 	font-weight: bold;
 }
 
-.options button:hover{
+.options .button-menu:hover{
 	background: rgba(255, 255, 255, 1);
 	box-shadow: 2px 2px 5px rgb(235, 235, 235, 0.8);
 }
 
-.options button .icon{
+.options .button-menu .icon{
 	color: var(--color-hover);
 }
 
@@ -155,6 +155,37 @@ a{
 
 .flex-icon{
 	flex: 0.35;
+}
+
+.text-field{
+	margin: 5px 5px 5px 5px;
+	width: 90%;
+	font-size: var(--font-size);
+	padding: 10px;
+	border: 2px solid black;
+	border-radius: 7.5px;
+}
+
+.text-field:focus{
+	border-color: var(--color-hover);
+}
+
+.label{
+	margin: 15px 5px 5px 5px;
+	float: left;
+	margin-left: 20px;
+}
+
+.button{
+	width: 90%;
+	height: 50px;
+	margin-top: 30px;
+	font-size: var(--font-size);
+	font-weight: bold;
+	padding: 15px;
+	background: var(--color-hover);
+	color: white;
+	border-radius: 50px;
 }
 
 /* The animation code */

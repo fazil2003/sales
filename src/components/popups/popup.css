@@ -14,8 +14,8 @@
     position: relative;
     padding: 32px;
     width: 100%;
-    max-width: 640px;
-    background-color: rgba(255, 255, 255, 0.9);
+    max-width: 500px;
+    background-color: rgba(255, 255, 255, 0.85);
     border-radius: 10px;
 }
 
@@ -23,6 +23,7 @@
     position: absolute;
     top: 16px;
     right: 16px;
-    font-size: 20px;
+    font-size: 30px;
     color: tomato;
+    background: transparent;
 }
