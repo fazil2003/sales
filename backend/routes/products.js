@@ -22,7 +22,7 @@ router.route('/createdb').get((req, res)=>{
 //     });
 // });
 
-// Insert
+// INSERT
 router.route('/insert').post((req, res) => {
     let productName = "";
     let productDescription = "";
@@ -44,17 +44,27 @@ router.route('/insert').post((req, res) => {
     });
 });
 
-// Select
+// SELECT
 router.route('/get').get((req, res) => {
-
     let q = "";
     if(req.query.q){
         q = req.query.q;
     }
-
     let col = 'name';
     let order = 'desc'
     let sql = `SELECT * FROM products WHERE name LIKE '%${q}%' OR description LIKE '%${q}%' ORDER BY ${col} ${order}`;
+    let query = db.query(sql, (err, result) => {
+        if(err) throw err;
+        res.send(result);
+    });
+
+});
+
+
+// DELETE
+router.route('/delete').post((req, res) => {
+    let id = req.body.id;
+    let sql = `DELETE FROM products WHERE id = ${id}`;
     let query = db.query(sql, (err, result) => {
         if(err) throw err;
         res.send(result);
