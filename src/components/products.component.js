@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import Popup from 'reactjs-popup';
+// import Popup from 'reactjs-popup';
+import Popup from './popups/products.popup';
 import './components-styles/products.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBox, faAdd, faFileCode, faGear, faEdit, faDeleteLeft } from '@fortawesome/free-solid-svg-icons'
@@ -19,8 +20,14 @@ const Product = props => (
 
 const Products = () =>{
 
+    // Used for Searching
     const [query, setQuery] = useState("");
+
+    // Store the results
     const [result, setResult] = useState([]);
+
+    //USed for Popup
+    const [buttonPopup, setButtonPopup] = useState(false);
 
     const getData = () =>{
         const res = axios.get(`http://localhost:5000/products/get?q=${query}`);
@@ -77,13 +84,20 @@ const Products = () =>{
                 <div class="options">
 
                     {/* REACTJS POPUP */}
-                    <Popup trigger={<button><FontAwesomeIcon icon={faAdd} className="icon" />&nbsp;&nbsp;Add New Record</button>}
+                    {/* <Popup trigger={<button><FontAwesomeIcon icon={faAdd} className="icon" />&nbsp;&nbsp;Add New Record</button>}
                     position="bottom center" >
                         Hello
-                    </Popup>
+                    </Popup> */}
 
+                    <button onClick={() => setButtonPopup(true)}><FontAwesomeIcon icon={faAdd} className="icon" />&nbsp;&nbsp;Add New Record</button>
                     <button><FontAwesomeIcon icon={faFileCode} className="icon" />&nbsp;&nbsp;Generate Report</button>
                     <button><FontAwesomeIcon icon={faGear} className="icon" />&nbsp;&nbsp;Others</button>
+
+                    <Popup trigger={buttonPopup} setTrigger={setButtonPopup} >
+                        <h3>Add Products</h3>
+                        <p>This is my button triggered popup.</p>
+                    </Popup>
+
                 </div>
             </div>
 
