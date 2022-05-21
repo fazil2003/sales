@@ -7,13 +7,25 @@ import './components-styles/products.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBox, faAdd, faFileCode, faGear, faEdit, faDeleteLeft } from '@fortawesome/free-solid-svg-icons'
 
-const Product = props => (
+const Product = (props) => (
     <div class="content-div" title={props.product.name}>
         <p class="name flex-three">{props.product.name}</p>
         <p class="description flex-three">{props.product.description}</p>
         <p class="price flex-one">{props.product.price}</p>
         <p class="stocks flex-one">{props.product.stocks}</p>
-        <FontAwesomeIcon icon={faEdit} className="icon blue" />
+        <FontAwesomeIcon icon={faEdit} className="icon blue" onClick={ (event) =>
+            editProduct(
+                props.product.id,
+                props.product.name,
+                props.product.description,
+                props.product.price,
+                props.product.stocks,
+                props.setProductID,
+                props.setProductName,
+                props.setButtonPopup
+                )
+            }
+        />
         <FontAwesomeIcon icon={faDeleteLeft} className="icon red" onClick={ (event) => deleteProduct(event, props.product.id) } />
     </div>
 )
@@ -36,6 +48,12 @@ const deleteProduct = (event, productID) => {
         .then(response => alert("Deleted Successfully!!!"));
 }
 
+const editProduct = (id, name, description, price, stocks, setProductID, setProductName, setButtonPopup) => {
+    setProductID(id);
+    setProductName(name);
+    setButtonPopup(true);
+}
+
 const Products = () =>{
 
     // Used for Searching
@@ -44,8 +62,12 @@ const Products = () =>{
     // Store the results
     const [result, setResult] = useState([]);
 
-    //USed for Popup
+    // Used for Popup
     const [buttonPopup, setButtonPopup] = useState(false);
+
+    // FOR UPDATING THE PRODUCT
+    const [productID, setProductID] = useState(0);
+    const [productName, setProductName] = useState("");
 
     const getData = () =>{
         const res = axios.get(`http://localhost:5000/products/get?q=${query}`);
@@ -64,7 +86,8 @@ const Products = () =>{
             <div>
                 {
                     result.slice(0, size).map(currentProduct => {
-                        return <Product product={currentProduct} value={query} />;
+                        return <Product product={currentProduct} value={query} setButtonPopup={setButtonPopup}
+                        setProductID = {setProductID} setProductName = {setProductName} />;
                     })
                 }
             </div>
@@ -94,11 +117,6 @@ const Products = () =>{
     // ADD NEW PRODUCT
     const addNewProduct = (event) => {
         event.preventDefault(); 
-
-        // console.log(event.target[0].value)
-        // console.log(event.target[1].value)   
-        // console.log(event.target[2].value)
-        // console.log(event.target[3].value)  
         
         // POST request using fetch inside useEffect React hook
         const insertData = {
@@ -106,6 +124,7 @@ const Products = () =>{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(
                 {
+                    id: productID,
                     name: event.target[0].value,
                     description: event.target[1].value,
                     price: event.target[2].value,
@@ -113,9 +132,18 @@ const Products = () =>{
                 }
             )
         };
+
         fetch('http://localhost:5000/products/insert', insertData)
-            .then(response => alert("Added Successfully!!!"))
-            .then(setButtonPopup(false));
+        .then(function(response) {
+            return response.text()
+            .then(function(text) {
+                alert(text);
+            });
+        })
+        .then(setButtonPopup(false));
+        
+        setProductID(0);
+        setProductName("");
         
     }
 
@@ -147,7 +175,7 @@ const Products = () =>{
                             <form onSubmit={addNewProduct}>
 
                                 <p className='label'>Product Name:</p>
-                                <input className='text-field' type='text' placeholder='Product Name' required />
+                                <input className='text-field' type='text' placeholder='Product Name' defaultValue={productName} required />
 
                                 <p className='label'>Product Description:</p>
                                 <input className='text-field' type='text' placeholder='Product Description' required />
@@ -158,7 +186,7 @@ const Products = () =>{
                                 <p className='label'>Product Stocks:</p>
                                 <input className='text-field' type='number' placeholder='Product Stocks' required />
 
-                                <button className='button'><FontAwesomeIcon icon={faAdd} className="icon" />&nbsp;&nbsp;Add</button>
+                                <button className='button'><FontAwesomeIcon icon={faAdd} className="icon" />&nbsp;&nbsp;Add/Update</button>
 
                             </form>
 
@@ -183,7 +211,7 @@ const Products = () =>{
 
             {/* <p>{JSON.stringify(this.state.result)}</p> */}
             <div id='productsList'>
-                {productsList()}
+                { productsList() }
             </div>
             
         </div>

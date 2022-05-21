@@ -34,14 +34,24 @@ router.route('/insert').post((req, res) => {
     productPrice = req.body.price;
     productStocks = req.body.stocks;
 
-    let insertData = {name: productName, description: productDescription, price: productPrice, stocks: productStocks};
-
-    let sql = 'INSERT INTO products SET ?';
-    let query = db.query(sql, insertData, (err, result) => {
-        if(err) throw err;
-        console.log(result);
-        res.send(JSON.stringify({"status": 200, "error": null, "response": "Added Successfully!!!"}));
-    });
+    if(req.body.id == 0){
+        let insertData = {name: productName, description: productDescription, price: productPrice, stocks: productStocks};
+        let sql = 'INSERT INTO products SET ?';
+        let query = db.query(sql, insertData, (err, result) => {
+            if(err) throw err;
+            console.log(result);
+            res.send("Data inserted successfully!!!");
+        });
+    }
+    else{
+        let sql = `UPDATE products SET name='${productName}', description='${productDescription}', price=${productPrice}, stocks=${productStocks} WHERE id=${req.body.id}`;
+        let query = db.query(sql, (err, result) => {
+            if(err) throw err;
+            console.log(result);
+            res.send("Data updated successfully!!!");
+        });
+    }
+    
 });
 
 // SELECT
@@ -59,7 +69,6 @@ router.route('/get').get((req, res) => {
     });
 
 });
-
 
 // DELETE
 router.route('/delete').post((req, res) => {
