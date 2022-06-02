@@ -1,21 +1,16 @@
-const mysql = require('mysql');
+var mongoose = require('mongoose');
 
-var db_config = {
-    host            :   'localhost',
-    user            :   'root',
-    password        :   '',
-    database        :   'sales',
-    connectTimeout  :   10000 
-};
+mongoose.connect('mongodb://localhost:27017/sales', {useNewUrlParser: true});
 
-var pool  = mysql.createPool(db_config);
+var conn = mongoose.connection;
 
-pool.getConnection(function(err, connection) {
-    console.log("MySql Connected");
+conn.on('connected', function() {
+    console.log('database is connected successfully');
 });
 
-pool.on('error', function(err) {
-    console.log(err.code);
+conn.on('disconnected',function(){
+    console.log('database is disconnected successfully');
 });
 
-module.exports = pool;
+conn.on('error', console.error.bind(console, 'connection error:'));
+module.exports = conn;
