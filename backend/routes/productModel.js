@@ -4,7 +4,9 @@ const db = require("./connect-db");
 // create an schema
 var productsSchema = new mongoose.Schema({
         name: String,
-        email:String
+        description: String,
+        price: Number,
+        stocks: Number
     });
 
 var productsModel = mongoose.model('products', productsSchema);

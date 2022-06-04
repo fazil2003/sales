@@ -15,7 +15,7 @@ const Product = (props) => (
         <p class="stocks flex-one">{props.product.stocks}</p>
         <FontAwesomeIcon icon={faEdit} className="icon blue" onClick={ (event) =>
             editProduct(
-                props.product.id,
+                props.product._id,
                 props.product.name,
                 props.product.description,
                 props.product.price,

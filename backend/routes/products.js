@@ -1,5 +1,6 @@
 const db = require('./connect-db');
 const router = require('express').Router();
+var ObjectId = require('mongodb').ObjectId;
 var productModel = require('./productModel');
 
 // Create DB
@@ -43,12 +44,15 @@ router.route('/insert').post((req, res) => {
         });
     }
     else{
-        // let sql = `UPDATE products SET name='${productName}', description='${productDescription}', price=${productPrice}, stocks=${productStocks} WHERE id=${req.body.id}`;
-        // let query = db.query(sql, (err, result) => {
-        //     if(err) throw err;
-        //     console.log(result);
-        //     res.send("Data updated successfully!!!");
-        // });
+        // console.log(`ObjectId("${req.body.id}")`);
+        var myquery = { _id: new ObjectId(req.body.id) };
+        console.log(myquery);
+        var newvalues = { $set: {name: productName, description: productDescription, price: productPrice, stocks: productStocks} };
+        db.collection("products").updateOne(myquery, newvalues, function(err, res) {
+            if (err) throw err;
+            console.log(res);
+        });
+        
     }
     
 });
@@ -56,14 +60,32 @@ router.route('/insert').post((req, res) => {
 // SELECT
 router.route('/get').get((req, res) => {
 
-    productModel.find((err, docs) => {
-        if (!err) {
-            res.send(docs);
-        } else {
-            console.log('Failed to retrieve the Course List: ' + err);
-        }
-    });
+    let q = "";
+    if(req.query.q){
+        
+        q = req.query.q;
+        // console.log("q="+q);
 
+        productModel.find(({ 'name': new RegExp(q, 'i') }), (err, docs) => {
+            if (!err) {
+                res.send(docs);
+            } else {
+                console.log('Failed to retrieve the Course List: ' + err);
+            }
+        });    
+
+    }
+    else{
+        productModel.find((err, docs) => {
+            if (!err) {
+                res.send(docs);
+            } else {
+                console.log('Failed to retrieve the Course List: ' + err);
+            }
+        });
+    }
+
+    
 
     // let q = "";
     // if(req.query.q){
