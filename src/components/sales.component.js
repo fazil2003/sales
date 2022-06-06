@@ -157,7 +157,8 @@ const Sales = () =>{
 
         let size = allProducts.length;
         return (
-            <select className='select' onChange={selectOnChangeHandler} >
+            <select className='select' onChange={selectOnChangeHandler}>
+                <option>NULL</option>
                 {
                     allProducts.slice(0, size).map(currentProduct => {
                         return <Product product={currentProduct} />;
@@ -188,6 +189,11 @@ const Sales = () =>{
     const addNewSale = (event) => {
 
         event.preventDefault(); 
+
+        if(saleProduct === ""){
+            alert("Please select a product");
+            return;
+        }
         
         // POST request using fetch inside useEffect React hook
         const insertData = {

@@ -97,4 +97,31 @@ router.route('/delete').post((req, res) => {
 
 });
 
+// REPORTS
+router.route('/reports').get((req, res) => {
+
+    // db.collection.aggregate([
+    //     {$group : {_id:"$field_name", count:{$sum:1}}}
+    // ])
+
+    productModel.aggregate([
+        {$group : {_id:"$name", count:{$sum:1}}}
+    ], (err, docs) => {
+        if (!err) {
+            res.send(docs);
+        } else {
+            console.log('Failed to retrieve the Course List: ' + err);
+        }
+    })
+
+    // productModel.find((err, docs) => {
+    //     if (!err) {
+    //         res.send(docs);
+    //     } else {
+    //         console.log('Failed to retrieve the Course List: ' + err);
+    //     }
+    // });    
+
+});
+
 module.exports = router;

@@ -94,4 +94,19 @@ router.route('/delete').post((req, res) => {
 
 });
 
+// REPORTS
+router.route('/reports').get((req, res) => {
+
+    saleModel.aggregate([
+        {$group : {_id:"$product", count:{$sum:1}}}
+    ], (err, docs) => {
+        if (!err) {
+            res.send(docs);
+        } else {
+            console.log('Failed to retrieve the Course List: ' + err);
+        }
+    })
+
+});
+
 module.exports = router;
