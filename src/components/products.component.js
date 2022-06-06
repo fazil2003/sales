@@ -22,6 +22,9 @@ const Product = (props) => (
                 props.product.stocks,
                 props.setProductID,
                 props.setProductName,
+                props.setProductDescription,
+                props.setProductPrice,
+                props.setProductStocks,
                 props.setButtonPopup
                 )
             }
@@ -48,9 +51,12 @@ const deleteProduct = (event, productID) => {
         .then(response => alert("Deleted Successfully!!!"));
 }
 
-const editProduct = (id, name, description, price, stocks, setProductID, setProductName, setButtonPopup) => {
+const editProduct = (id, name, description, price, stocks, setProductID, setProductName, setProductDescription, setProductPrice, setProductStocks, setButtonPopup) => {
     setProductID(id);
     setProductName(name);
+    setProductDescription(description);
+    setProductPrice(price);
+    setProductStocks(stocks);
     setButtonPopup(true);
 }
 
@@ -68,6 +74,10 @@ const Products = () =>{
     // FOR UPDATING THE PRODUCT
     const [productID, setProductID] = useState(0);
     const [productName, setProductName] = useState("");
+    const [productDescription, setProductDescription] = useState("");
+    const [productPrice, setProductPrice] = useState("");
+    const [productStocks, setProductStocks] = useState("");
+
 
     const getData = () =>{
         const res = axios.get(`http://localhost:5000/products/get?q=${query}`);
@@ -87,7 +97,8 @@ const Products = () =>{
                 {
                     result.slice(0, size).map(currentProduct => {
                         return <Product product={currentProduct} value={query} setButtonPopup={setButtonPopup}
-                        setProductID = {setProductID} setProductName = {setProductName} />;
+                        setProductID = {setProductID} setProductName = {setProductName} setProductDescription={setProductDescription}
+                        setProductPrice={setProductPrice} setProductStocks={setProductStocks} />;
                     })
                 }
             </div>
@@ -116,6 +127,7 @@ const Products = () =>{
 
     // ADD NEW PRODUCT
     const addNewProduct = (event) => {
+
         event.preventDefault(); 
         
         // POST request using fetch inside useEffect React hook
@@ -144,6 +156,9 @@ const Products = () =>{
         
         setProductID(0);
         setProductName("");
+        setProductDescription("");
+        setProductPrice("");
+        setProductStocks("");
         
     }
 
@@ -164,7 +179,17 @@ const Products = () =>{
                         Hello
                     </Popup> */}
 
-                    <button className='button-menu' onClick={() => setButtonPopup(true)}><FontAwesomeIcon icon={faAdd} className="icon" />&nbsp;&nbsp;Add New Record</button>
+                    <button className='button-menu' onClick={() => {
+                            setButtonPopup(true);
+                            setProductName("");
+                            setProductDescription("");
+                            setProductPrice("");
+                            setProductStocks("");
+                            }
+                        }>
+                        <FontAwesomeIcon icon={faAdd} className="icon" />&nbsp;&nbsp;Add New Record
+                    </button>
+
                     <button className='button-menu'><FontAwesomeIcon icon={faFileCode} className="icon" />&nbsp;&nbsp;Generate Report</button>
                     <button className='button-menu'><FontAwesomeIcon icon={faGear} className="icon" />&nbsp;&nbsp;Others</button>
 
@@ -178,13 +203,13 @@ const Products = () =>{
                                 <input className='text-field' type='text' placeholder='Product Name' defaultValue={productName} required />
 
                                 <p className='label'>Product Description:</p>
-                                <input className='text-field' type='text' placeholder='Product Description' required />
+                                <input className='text-field' type='text' placeholder='Product Description' defaultValue={productDescription} required />
 
                                 <p className='label'>Product Price:</p>
-                                <input className='text-field' type='number' placeholder='Product Price' required />
+                                <input className='text-field' type='number' placeholder='Product Price' defaultValue={productPrice} required />
 
                                 <p className='label'>Product Stocks:</p>
-                                <input className='text-field' type='number' placeholder='Product Stocks' required />
+                                <input className='text-field' type='number' placeholder='Product Stocks' defaultValue={productStocks} required />
 
                                 <button className='button'><FontAwesomeIcon icon={faAdd} className="icon" />&nbsp;&nbsp;Add/Update</button>
 

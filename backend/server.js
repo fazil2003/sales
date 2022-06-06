@@ -17,6 +17,10 @@ app.use('/products', productsRouter);
 const customersRouter = require('./routes/customers');
 app.use('/customers', customersRouter);
 
+// FOR SALES
+const salesRouter = require('./routes/sales');
+app.use('/sales', salesRouter);
+
 app.listen(port, () => {
     console.log("Server is running");
 });

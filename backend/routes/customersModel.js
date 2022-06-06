@@ -4,6 +4,9 @@ const db = require("./connect-db");
 // create an schema
 var customersSchema = new mongoose.Schema({
         name: String,
+        occupation: String,
+        address: String,
+        phone: String,
         email: String
     });
 

@@ -1,0 +1,8 @@
+.select{
+    width: calc(100% - 20px);
+    font-size: 20px;
+    color: black;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+}
