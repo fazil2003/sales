@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import BarChart from "./BarChart";
 import axios from "axios";
+
+import './components-styles/products.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBox, faAdd, faFileCode, faGear, faEdit, faDeleteLeft } from '@fortawesome/free-solid-svg-icons'
 import { UserData } from "./Data";
 // import {UserData} from "./Data";
 
@@ -46,29 +50,37 @@ const Reports = () => {
   
 
   return (
-      <center>
-        <div className="App">
-            <div style={{ width: '1000px', height: '100%', objectFit: 'contain', backgroundColor: 'white', borderRadius: '10px', padding: '20px' }}>
-            {isDisplayed && <BarChart chartData={
-                {
-                    labels: reportData.map((data) => data._id),
-                    datasets: [{
-                      label: "Products sales",
-                      data: reportData.map((data) => data.count),
-                      backgroundColor: [
-                        '#f6d365',
-                        '#84fab0',
-                        '#4facfe',
-                        '#43e97b'
-                      ],
-                      borderColor: "black",
-                      borderWidth: 2,
-                    }]
-                  }
-            } />}
+
+      <div class="customers-container">
+            <div class="heading-div">
+                <p class="heading"><FontAwesomeIcon icon={faBox} className="icon" />&nbsp;&nbsp;Reports</p>
             </div>
-        </div>
-      </center>
+
+            <center>
+              <div className="App">
+                  <div style={{ width: '1000px', height: '100%', objectFit: 'contain', backgroundColor: 'white', borderRadius: '30px', padding: '20px' }}>
+                  {isDisplayed && <BarChart chartData={
+                      {
+                          labels: reportData.map((data) => data._id),
+                          datasets: [{
+                            label: "Products sales",
+                            data: reportData.map((data) => data.count),
+                            backgroundColor: [
+                              '#f6d365',
+                              '#84fab0',
+                              '#4facfe',
+                              '#43e97b'
+                            ],
+                            borderColor: "black",
+                            borderWidth: 2,
+                          }]
+                        }
+                  } />}
+                  </div>
+              </div>
+            </center>
+
+      </div>
   );
 }
 
