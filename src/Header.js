@@ -12,7 +12,17 @@ function Header() {
     return (
         <div className="header">
 
-            <img className="header-img" src={process.env.PUBLIC_URL + '/images/icon-sales.png'} alt="logo" />
+            {/* <img className="header-img" src={process.env.PUBLIC_URL + '/images/icon-sales.png'} alt="logo" /> */}
+
+            <div className='logo'>
+                <div class="logo-left">
+                    <img src={process.env.PUBLIC_URL + '/images/favicon.png'} />
+                </div>
+                <div class="logo-separator"></div>
+                <div class="logo-right">
+                    <p>sales</p>
+                </div>
+            </div>
 
             <div className="navbar">
 

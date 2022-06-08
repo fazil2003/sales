@@ -3,8 +3,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
 :root{
-	--color-primary: #00DBDE;
-	--color-secondary: #FC00FF; 
+	/* --color-primary: #00DBDE;
+	--color-secondary: #FC00FF;  */
+	--color-primary: #2AF598;
+	--color-secondary: #009EFD; 
 	--color-hover: #1E90FF;
 	--font-family: Quicksand, sans-serif;
 	--font-family-two: 'Montserrat', sans-serif;
