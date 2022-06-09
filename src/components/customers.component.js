@@ -31,7 +31,7 @@ const Customer = props => (
                 )
             }
         />
-        <FontAwesomeIcon icon={faDeleteLeft} className="icon red" onClick={ (event) => deleteCustomer(event, props.customer.id) } />
+        <FontAwesomeIcon icon={faDeleteLeft} className="icon red" onClick={ (event) => deleteCustomer(event, props.customer._id) } />
     </div>
 )
 

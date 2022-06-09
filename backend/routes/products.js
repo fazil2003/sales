@@ -88,13 +88,11 @@ router.route('/get').get((req, res) => {
 
 // DELETE
 router.route('/delete').post((req, res) => {
-    // let id = req.body.id;
-    // let sql = `DELETE FROM products WHERE id = ${id}`;
-    // let query = db.query(sql, (err, result) => {
-    //     if(err) throw err;
-    //     res.send(result);
-    // });
-
+    var myquery = { _id: new ObjectId(req.body.id) };
+    db.collection("products").deleteOne(myquery, function(err, res) {
+        if (err) throw err;
+    });
+    res.send("Deleted");
 });
 
 // REPORTS

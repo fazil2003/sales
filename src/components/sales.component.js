@@ -25,7 +25,7 @@ const Sale = (props) => (
                 )
             }
         />
-        <FontAwesomeIcon icon={faDeleteLeft} className="icon red" onClick={ (event) => deleteSale(event, props.sale.id) } />
+        <FontAwesomeIcon icon={faDeleteLeft} className="icon red" onClick={ (event) => deleteSale(event, props.sale._id) } />
     </div>
 )
 

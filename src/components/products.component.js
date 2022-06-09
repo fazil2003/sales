@@ -29,7 +29,7 @@ const Product = (props) => (
                 )
             }
         />
-        <FontAwesomeIcon icon={faDeleteLeft} className="icon red" onClick={ (event) => deleteProduct(event, props.product.id) } />
+        <FontAwesomeIcon icon={faDeleteLeft} className="icon red" onClick={ (event) => deleteProduct(event, props.product._id) } />
     </div>
 )
 
@@ -47,8 +47,9 @@ const deleteProduct = (event, productID) => {
             }
         )
     };
+
     fetch('http://localhost:5000/products/delete', deleteData)
-        .then(response => alert("Deleted Successfully!!!"));
+        .then(response => alert("Deleted successfully!!!"));
 }
 
 const editProduct = (id, name, description, price, stocks, setProductID, setProductName, setProductDescription, setProductPrice, setProductStocks, setButtonPopup) => {
