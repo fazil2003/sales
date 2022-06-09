@@ -63,6 +63,9 @@ const editProduct = (id, name, description, price, stocks, setProductID, setProd
 
 const Products = () =>{
 
+    const [sortColumn, setSortColumn] = useState("name");
+    const [sortValue, setSortValue] = useState(1);
+
     // Used for Searching
     const [query, setQuery] = useState("");
 
@@ -81,7 +84,7 @@ const Products = () =>{
 
 
     const getData = () =>{
-        const res = axios.get(`http://localhost:5000/products/get?q=${query}`);
+        const res = axios.get(`http://localhost:5000/products/get?q=${query}&col=${sortColumn}&val=${sortValue}`);
         return res;
     }
 

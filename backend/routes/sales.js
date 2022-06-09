@@ -72,7 +72,7 @@ router.route('/get').get((req, res) => {
 
     }
     else{
-        saleModel.find((err, docs) => {
+        saleModel.find({}).sort({name: 1}).exec((err, docs) => {
             if (!err) {
                 res.send(docs);
             } else {

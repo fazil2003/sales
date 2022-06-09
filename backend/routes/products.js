@@ -75,7 +75,7 @@ router.route('/get').get((req, res) => {
 
     }
     else{
-        productModel.find((err, docs) => {
+        productModel.find({}).sort({name: 1}).exec((err, docs) => {
             if (!err) {
                 res.send(docs);
             } else {
