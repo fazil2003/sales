@@ -62,7 +62,7 @@ router.route('/get').get((req, res) => {
         q = req.query.q;
         // console.log("q="+q);
 
-        saleModel.find(({ 'customer': new RegExp(q, 'i') }), (err, docs) => {
+        saleModel.find({$or:[{ 'customer': new RegExp(q, 'i') }, { 'product': new RegExp(q, 'i') }]}, (err, docs) => {
             if (!err) {
                 res.send(docs);
             } else {
